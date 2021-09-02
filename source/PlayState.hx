@@ -478,6 +478,12 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/roses/rosesDialogue'));
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/thorns/thornsDialogue'));
+			case 'get-rich':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/roses/rosesDialogue'));
+			case 'short-sale':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/thorns/thornsDialogue'));
+			case 'bankrupt':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/thorns/thornsDialogue'));
 		}
 
 		// defaults if no stage was found in chart
@@ -1345,6 +1351,12 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'thorns':
 					schoolIntro(doof);
+				case 'get-rich':
+					schoolIntro(doof);
+				case 'short-sale':
+					showItBitch(doof);
+				case 'bankrupt':
+					showItBitch(doof);
 				default:
 					startCountdown();
 			}
@@ -1361,6 +1373,19 @@ class PlayState extends MusicBeatState
 		FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, releaseInput);
 		super.create();
 	}
+
+	function showItBitch(?dialogueBox:DialogueBox):Void
+		{
+			if (dialogueBox != null)
+			{
+				inCutscene = true;
+				add(dialogueBox);
+			}
+			else
+			{
+				startCountdown();
+			}
+		}
 
 	function schoolIntro(?dialogueBox:DialogueBox):Void
 	{
