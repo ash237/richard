@@ -1089,9 +1089,11 @@ class PlayState extends MusicBeatState
 				gf.x += 180;
 				gf.y += 300;
 			case 'airplane':
-				boyfriend.x += 100;
+				gf.x += 450;
+				gf.y += 100;
+				boyfriend.x += 350;
 				boyfriend.y += 40;
-				dad.x -= 100;
+				dad.x -= 150;
 		}
 
 		if (!PlayStateChangeables.Optimize)
@@ -4271,6 +4273,7 @@ class PlayState extends MusicBeatState
 		if (note.rating == "miss")
 			return;
 
+
 		// add newest note to front of notesHitArray
 		// the oldest notes are at the end and are removed first
 		if (!note.isSustainNote)
@@ -4284,6 +4287,7 @@ class PlayState extends MusicBeatState
 
 		if (!note.wasGoodHit)
 		{
+			switch ()
 			if (!note.isSustainNote)
 			{
 				popUpScore(note);
