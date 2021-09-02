@@ -48,6 +48,7 @@ class Character extends FlxSprite
 				animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
 				animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
 				animation.addByPrefix('scared', 'GF FEAR', 24);
+				animation.addByPrefix('point', 'GF Point', 24, false);
 
 				loadOffsetFile(curCharacter);
 
@@ -479,6 +480,7 @@ class Character extends FlxSprite
 			case 'gf':
 				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
 					playAnim('danceRight');
+				
 		}
 
 		super.update(elapsed);
@@ -496,7 +498,7 @@ class Character extends FlxSprite
 			switch (curCharacter)
 			{
 				case 'gf' | 'gf-christmas' | 'gf-car' | 'gf-pixel':
-					if (!animation.curAnim.name.startsWith('hair'))
+					if (!animation.curAnim.name.startsWith('hair') && !animation.curAnim.name.startsWith('point') || animation.curAnim.name.startsWith('point') && animation.curAnim.finished)
 					{
 						danced = !danced;
 
@@ -512,8 +514,10 @@ class Character extends FlxSprite
 						playAnim('danceRight');
 					else
 						playAnim('danceLeft');
+				
 				default:
-					playAnim('idle', forced);
+					if (!animation.curAnim.name.startsWith('troll') || animation.curAnim.name.startsWith('troll') && animation.curAnim.finished)
+						playAnim('idle', forced);
 			}
 		}
 	}
@@ -545,6 +549,8 @@ class Character extends FlxSprite
 			{
 				danced = !danced;
 			}
+			if (AnimName == 'point')
+				danced = true;
 		}
 	}
 
