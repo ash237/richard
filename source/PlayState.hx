@@ -902,7 +902,7 @@ class PlayState extends MusicBeatState
 							{
 								bg.antialiasing = true;
 							}
-						//bg.scrollFactor.set(0.9, 0.9);
+						bg.scrollFactor.set(0.9, 0.9);
 						bg.active = false;
 						add(bg);
 
@@ -4287,7 +4287,18 @@ class PlayState extends MusicBeatState
 
 		if (!note.wasGoodHit)
 		{
-			switch ()
+			switch (note.noteType) {
+				case 'info':
+					switch (FlxG.random.int(0, 3)) {
+						case 0:
+							fancyOpenURL('https://www.youtube.com/watch?v=tXBrK8jSA9U');
+						case 1:
+							fancyOpenURL('https://www.youtube.com/watch?v=xTd6nlbcIZc');
+						case 2:
+							fancyOpenURL('https://www.youtube.com/watch?v=nVNSAoFKKOk');
+					}
+					
+			}
 			if (!note.isSustainNote)
 			{
 				popUpScore(note);
