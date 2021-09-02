@@ -216,6 +216,16 @@ class PlayState extends MusicBeatState
 	var bgGirls:BackgroundGirls;
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 
+	var grpGraph:FlxTypedGroup<FlxSprite>;
+	var graphPointer:FlxObject;
+	var graphPosition:Float;
+	var grpGraphIndicators:FlxTypedGroup<FlxSprite>;
+	public var graphMode:Int = 0;
+	var graphMoveTimer:Int = -1;
+	var graphMove:Float = 0;
+	var neutralGraphPos:Float = 0;
+	var graphBurstTimer:Int = 0;
+
 	var talking:Bool = true;
 
 	public var songScore:Int = 0;
@@ -224,6 +234,7 @@ class PlayState extends MusicBeatState
 	var scoreTxt:FlxText;
 	var replayTxt:FlxText;
 
+	var oldMode:Int = 0;
 	public static var campaignScore:Int = 0;
 
 	var defaultCamZoom:Float = 1.05;
@@ -267,6 +278,8 @@ class PlayState extends MusicBeatState
 	private var dataColor:Array<String> = ['purple', 'blue', 'green', 'red'];
 
 	public static var startTime = 0.0;
+
+	var shinyMode:Bool = false;
 
 	// API stuff
 
@@ -920,6 +933,40 @@ class PlayState extends MusicBeatState
 						bg.active = false;
 						add(bg);
 
+						var theGraph:FlxSprite = new FlxSprite(646, 80).loadGraphic(Paths.image('rich/TV', 'shared'));
+						if(FlxG.save.data.antialiasing)
+							{
+								theGraph.antialiasing = true;
+							}
+						theGraph.scrollFactor.set(1, 1);
+						theGraph.active = false;
+						add(theGraph);
+
+						graphPointer = new FlxObject(1140, 188, 0, 0);
+						add(graphPointer);
+						graphPosition = graphPointer.y;
+						grpGraph = new FlxTypedGroup<FlxSprite>();
+						add(grpGraph);
+
+						grpGraphIndicators = new FlxTypedGroup<FlxSprite>();
+						add(grpGraphIndicators);
+
+						for (i in 0...3) {
+							var indic:FlxSprite = new FlxSprite(681, 334);
+							indic.visible = false;
+							switch (i) {
+								case 0:
+									indic.loadGraphic(Paths.image('rich/TV graphs/Graph STABLE', 'shared'));
+									indic.visible = true;
+								case 1:
+									indic.loadGraphic(Paths.image('rich/TV graphs/Graph UP', 'shared'));
+								case 2:
+									indic.loadGraphic(Paths.image('rich/TV graphs/Graph DOWN', 'shared'));
+							}
+							grpGraphIndicators.add(indic);
+						}
+						neutralGraphPos = graphPointer.y;
+						graphBurstTimer = FlxG.random.int(90, 150);
 						/*var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
 						stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 						stageFront.updateHitbox();
@@ -1121,7 +1168,17 @@ class PlayState extends MusicBeatState
 			add(dad);
 			add(boyfriend);
 		}
-
+		switch (curStage) {
+			case 'airplane':
+				var bg:FlxSprite = new FlxSprite(-600, 600).loadGraphic(Paths.image('rich/Foreground', 'shared'));
+				if(FlxG.save.data.antialiasing)
+					{
+						bg.antialiasing = true;
+					}
+				bg.scrollFactor.set(1.3, 1.3);
+				bg.active = false;
+				add(bg);
+		}
 		if (loadRep)
 		{
 			FlxG.watch.addQuick('rep rpesses', repPresses);
@@ -2869,6 +2926,8 @@ class PlayState extends MusicBeatState
 					case 'schoolEvil':
 						camFollow.x = boyfriend.getMidpoint().x - 200;
 						camFollow.y = boyfriend.getMidpoint().y - 200;
+					case 'airplane':
+						camFollow.setPosition(boyfriend.getMidpoint().x - 300 + offsetX, boyfriend.getMidpoint().y - 100 + offsetY);
 				}
 			}
 		}
@@ -3004,6 +3063,11 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic)
 		{
+			updateGraph();
+			if (shinyMode && graphMoveTimer == 1) {
+				graphMove = FlxG.random.float(4, 4.1, [0]);
+				
+			}
 			var holdArray:Array<Bool> = [controls.LEFT, controls.DOWN, controls.UP, controls.RIGHT];
 
 			notes.forEachAlive(function(daNote:Note)
@@ -3525,7 +3589,7 @@ class PlayState extends MusicBeatState
 
 		var coolText:FlxText = new FlxText(0, 0, 0, placement, 32);
 		coolText.screenCenter();
-		coolText.x = FlxG.width * 0.55;
+		coolText.x = FlxG.width * 0.45;
 		coolText.y -= 350;
 		coolText.cameras = [camHUD];
 		//
@@ -4298,7 +4362,111 @@ class PlayState extends MusicBeatState
 					goodNoteHit(note, false); */
 		}
 	}
+	function updateGraph() {
+		graphPointer.y += graphMove;
+		
 
+		var theColor = FlxColor.ORANGE;
+
+		if (graphMoveTimer > 0) {
+			graphMoveTimer--;
+		} else if (graphMoveTimer == 0) {
+			graphMove = 0;
+			graphMoveTimer = -1;
+			if (shinyMode) {
+				shinyMode = false;
+				graphMode = oldMode;
+			}
+		}
+		switch (graphMode) {
+			case 0:
+				var a = FlxG.random.int(0, 150);
+				
+				if (graphBurstTimer > 0) {
+					graphBurstTimer--;
+				} else if (graphBurstTimer == 0) {
+					graphBurstTimer = FlxG.random.int(90, 220);
+					//graphBurstTimer = -1;
+					if (graphMoveTimer <= 0) {
+						graphMove = FlxG.random.float(-0.4, 0.4, [0]);
+						graphMoveTimer = FlxG.random.int(8, 20);
+					}
+				}
+				if (graphPointer.y < neutralGraphPos - 30)
+					graphPointer.y = neutralGraphPos - 30;
+				if (graphPointer.y > neutralGraphPos + 30)
+					graphPointer.y = neutralGraphPos + 30;
+				
+			case 1:
+				theColor = FlxColor.GREEN;
+				var a = FlxG.random.int(0, 130);
+				
+				if (graphBurstTimer > 0) {
+					graphBurstTimer--;
+				} else if (graphBurstTimer == 0) {
+					graphBurstTimer = FlxG.random.int(80, 180);
+					//graphBurstTimer = -1;
+					if (graphMoveTimer <= 0) {
+						graphMove = FlxG.random.float(-0.6, 0.2, [0]);
+						graphMoveTimer = FlxG.random.int(10, 20);
+					}
+				}
+			case 2:
+				theColor = FlxColor.RED;
+				var a = FlxG.random.int(0, 130);
+
+				if (graphBurstTimer > 0) {
+					graphBurstTimer--;
+				} else if (graphBurstTimer == 0) {
+					graphBurstTimer = FlxG.random.int(80, 180);
+					//graphBurstTimer = -1;
+					if (graphMoveTimer <= 0) {
+						graphMove = FlxG.random.float(-0.2, 0.5, [0]);
+						graphMoveTimer = FlxG.random.int(10, 20);
+					}
+				}
+		}
+		
+		if (graphPointer.y < 99)
+			graphPointer.y = 99;
+		if (graphPointer.y > 325)
+			graphPointer.y = 325;
+
+		/*if (graphPosition < graphPointer.y)
+			
+		else if (graphPosition > graphPointer.y)*/
+			
+		var thePoint = new FlxSprite(graphPointer.x, graphPointer.y).makeGraphic(4, 4, theColor);
+		graphPosition = thePoint.y;
+		grpGraph.add(thePoint);
+		if (grpGraph.length > 0) {
+			for (i in grpGraph) {
+				i.x -= 0.5;
+				if (i.x < 676.15)
+					grpGraph.remove(i);
+			}
+
+		}
+		if (FlxG.keys.justPressed.I) {
+			switchGraphMode(0);
+		}
+		if (FlxG.keys.justPressed.O) {
+			switchGraphMode(1);
+		}
+		if (FlxG.keys.justPressed.P) {
+			switchGraphMode(2);
+		}
+	}
+	function switchGraphMode(mode:Int) {
+		for (i in grpGraphIndicators)
+			i.visible = false;
+		grpGraphIndicators.members[mode].visible = true;
+		graphMode = mode;
+		switch (mode) {
+			case 0:
+				neutralGraphPos = graphPointer.y;
+		}
+	}
 	function goodNoteHit(note:Note, resetMashViolation = true):Void
 	{
 		if (mashing != 0)
@@ -4340,8 +4508,15 @@ class PlayState extends MusicBeatState
 							fancyOpenURL('https://www.youtube.com/watch?v=xTd6nlbcIZc');
 						case 2:
 							fancyOpenURL('https://www.youtube.com/watch?v=nVNSAoFKKOk');
-					}
-					
+					}	
+				case 'shiny':
+					oldMode = graphMode;
+					shinyMode = true;
+					graphMove = FlxG.random.float(-4, -3.2, [0]);
+					graphMoveTimer = 10;
+					graphMode = 1;
+					gf.playAnim('point', true);
+					dad.playAnim('troll', true);
 			}
 			if (!note.isSustainNote)
 			{
