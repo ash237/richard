@@ -33,7 +33,6 @@ class DialogueBox extends FlxSpriteGroup
 
 	var SkipThisShit:FlxText;
 
-	var handSelect:FlxSprite;
 	var bgFade:FlxSprite;
 
 	var fuck:Bool = false;
@@ -64,7 +63,7 @@ class DialogueBox extends FlxSpriteGroup
 				bgFade.alpha = 0.7;
 		}, 5);
 
-		box = new FlxSprite(-20, 45);
+		box = new FlxSprite(50, 350);
 		
 		var hasDialog = false;
 		switch (PlayState.SONG.song.toLowerCase())
@@ -135,15 +134,12 @@ class DialogueBox extends FlxSpriteGroup
 		if (hasDialog)
 			{
 				SkipThisShit = new FlxText(0, FlxG.height * 0.92, -100, "Press SPACE to skip", 32);
-				SkipThisShit.font = 'Crewniverse';
+				SkipThisShit.font = 'Courier New';
 				add(SkipThisShit);
 			}
 
 		box.screenCenter(X);
 		portraitLeft.screenCenter(X);
-
-		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
-		add(handSelect);
 
 
 		if (!talkingRight)
@@ -152,14 +148,13 @@ class DialogueBox extends FlxSpriteGroup
 		}
 
 		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
-		dropText.font = 'Pixel Arial 11 Bold';
+		dropText.font = 'Courier New';
 		dropText.color = 0xFFD89494;
 		add(dropText);
 
 		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
-		swagDialogue.font = 'Pixel Arial 11 Bold';
+		swagDialogue.font = 'Courier New';
 		swagDialogue.color = 0xFF3F2021;
-		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
 		add(swagDialogue);
 		
 
