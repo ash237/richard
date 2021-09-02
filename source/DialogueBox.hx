@@ -111,7 +111,7 @@ class DialogueBox extends FlxSpriteGroup
 		if (!hasDialog)
 			return;
 		
-		portraitLeft = new FlxSprite(-20, 40).loadGraphic(Paths.image('rich/portraits/richard_happy_5', 'shared'));
+		portraitLeft = new FlxSprite(-20, 40).loadGraphic(Paths.image('rich/portraits/happy/Upset', 'shared'));
 		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 		portraitLeft.updateHitbox();
 		portraitLeft.scrollFactor.set();
