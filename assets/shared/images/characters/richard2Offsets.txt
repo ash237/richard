@@ -1,0 +1,9 @@
+idle 0 0
+singUP 50 71
+singRIGHT -38 10
+singLEFT 46 -6
+singDOWN 2 67
+chaChing 56 28
+troll 106 36
+sell 134 73
+surprised 150 102

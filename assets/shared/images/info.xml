@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="info.png">
+	<!-- Created with Adobe Animate version 21.0.8.42666 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="down0000" x="3" y="3" width="223" height="229"/>
+	<SubTexture name="downHit0000" x="229" y="3" width="223" height="229"/>
+	<SubTexture name="downHit0001" x="455" y="3" width="223" height="229"/>
+	<SubTexture name="downHit0002" x="681" y="3" width="223" height="229"/>
+	<SubTexture name="left0000" x="3" y="235" width="223" height="229"/>
+	<SubTexture name="leftHit0000" x="229" y="235" width="223" height="229"/>
+	<SubTexture name="leftHit0001" x="455" y="235" width="223" height="229"/>
+	<SubTexture name="leftHit0002" x="681" y="235" width="223" height="229"/>
+	<SubTexture name="right0000" x="3" y="467" width="223" height="229"/>
+	<SubTexture name="rightHit0000" x="229" y="467" width="223" height="229"/>
+	<SubTexture name="rightHit0001" x="455" y="467" width="223" height="229"/>
+	<SubTexture name="rightHit0002" x="681" y="467" width="223" height="229"/>
+	<SubTexture name="up0000" x="3" y="699" width="223" height="229"/>
+	<SubTexture name="upHit0000" x="229" y="699" width="223" height="229"/>
+	<SubTexture name="upHit0001" x="455" y="699" width="223" height="229"/>
+	<SubTexture name="upHit0002" x="681" y="699" width="223" height="229"/>
+</TextureAtlas>
