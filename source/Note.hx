@@ -38,6 +38,7 @@ class Note extends FlxSprite
 	public var noteScore:Float = 1;
 
 	public var noteYOff:Int = 0;
+	public var noteXOff:Int = 0;
 
 	public static var swagWidth:Float = 160 * 0.7;
 	public static var PURP_NOTE:Int = 0;
@@ -177,10 +178,11 @@ class Note extends FlxSprite
 							for (i in 0...4)
 							{
 								animation.addByPrefix(dataColor[i] + 'Scroll', dataDirections[i] + '0'); // Normal notes
-								/*animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
+								/*animation.addByPrefix(dataColor[i] + 'holsd', dataColor[i] + ' hold'); // Hold
 								animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails*/
 							}
-							noteYOff = -10;
+							noteYOff = -17;
+							noteXOff = -20;
 						case 'info':
 							frames = Paths.getSparrowAtlas('info', 'shared');
 
@@ -190,6 +192,8 @@ class Note extends FlxSprite
 								/*animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
 								animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails*/
 							}
+							noteYOff = -17;
+							noteXOff = -20;
 						default:
 							frames = Paths.getSparrowAtlas('NOTE_assets');
 

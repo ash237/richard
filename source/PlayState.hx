@@ -897,12 +897,20 @@ class PlayState extends MusicBeatState
 					{
 						defaultCamZoom = 0.6;
 						curStage = 'airplane';
+
+						var sky:FlxSprite = new FlxSprite(-600, -600).loadGraphic(Paths.image('rich/Sky phase 1/Sky Clear', 'shared'));
+						if(FlxG.save.data.antialiasing)
+							{
+								sky.antialiasing = true;
+							}
+						sky.scrollFactor.set(0.6, 0.6);
+						add(sky);
 						var bg:FlxSprite = new FlxSprite(-600, -600).loadGraphic(Paths.image('rich/Background', 'shared'));
 						if(FlxG.save.data.antialiasing)
 							{
 								bg.antialiasing = true;
 							}
-						bg.scrollFactor.set(0.9, 0.9);
+						bg.scrollFactor.set(1, 1);
 						bg.active = false;
 						add(bg);
 
@@ -1001,7 +1009,7 @@ class PlayState extends MusicBeatState
 		}
 
 		gf = new Character(400, 130, curGf);
-		gf.scrollFactor.set(0.95, 0.95);
+		gf.scrollFactor.set(1, 1);
 
 		dad = new Character(100, 100, SONG.player2);
 
@@ -3135,7 +3143,7 @@ class PlayState extends MusicBeatState
 				if (daNote.mustPress && !daNote.modifiedByLua)
 				{
 					daNote.visible = playerStrums.members[Math.floor(Math.abs(daNote.noteData))].visible;
-					daNote.x = playerStrums.members[Math.floor(Math.abs(daNote.noteData))].x;
+					daNote.x = playerStrums.members[Math.floor(Math.abs(daNote.noteData))].x + daNote.noteXOff;
 					if (!daNote.isSustainNote)
 						daNote.modAngle = playerStrums.members[Math.floor(Math.abs(daNote.noteData))].angle;
 					if (daNote.sustainActive)
@@ -3145,7 +3153,7 @@ class PlayState extends MusicBeatState
 				else if (!daNote.wasGoodHit && !daNote.modifiedByLua)
 				{
 					daNote.visible = strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].visible;
-					daNote.x = strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].x;
+					daNote.x = strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].x + daNote.noteXOff;
 					if (!daNote.isSustainNote)
 						daNote.modAngle = strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].angle;
 					if (daNote.sustainActive)
@@ -3182,81 +3190,92 @@ class PlayState extends MusicBeatState
 									totalNotesHit += 1;
 								else
 								{
-									if (!daNote.isSustainNote)
-										health -= 0.10;
-									vocals.volume = 0;
-									if (theFunne && !daNote.isSustainNote)
-										noteMiss(daNote.noteData, daNote);
-									if (daNote.isParent)
-									{
-										health -= 0.20; // give a health punishment for failing a LN
-										trace("hold fell over at the start");
-										for (i in daNote.children)
-										{
-											i.alpha = 0.3;
-											i.sustainActive = false;
-										}
-									}
-									else
-									{
-										if (!daNote.wasGoodHit
-											&& daNote.isSustainNote
-											&& daNote.sustainActive
-											&& daNote.spotInLine != daNote.parent.children.length)
-										{
-											health -= 0.20; // give a health punishment for failing a LN
-											trace("hold fell over at " + daNote.spotInLine);
-											for (i in daNote.parent.children)
+									switch (daNote.noteType) {
+										case 'info' | 'shiny':
+
+										default:
+											if (!daNote.isSustainNote)
+												health -= 0.10;
+											vocals.volume = 0;
+											if (theFunne && !daNote.isSustainNote)
+												noteMiss(daNote.noteData, daNote);
+											if (daNote.isParent)
 											{
-												i.alpha = 0.3;
-												i.sustainActive = false;
+												health -= 0.20; // give a health punishment for failing a LN
+												trace("hold fell over at the start");
+												for (i in daNote.children)
+												{
+													i.alpha = 0.3;
+													i.sustainActive = false;
+												}
 											}
-											if (daNote.parent.wasGoodHit)
-												misses++;
-											updateAccuracy();
-										}
+											else
+											{
+												if (!daNote.wasGoodHit
+													&& daNote.isSustainNote
+													&& daNote.sustainActive
+													&& daNote.spotInLine != daNote.parent.children.length)
+												{
+													health -= 0.20; // give a health punishment for failing a LN
+													trace("hold fell over at " + daNote.spotInLine);
+													for (i in daNote.parent.children)
+													{
+														i.alpha = 0.3;
+														i.sustainActive = false;
+													}
+													if (daNote.parent.wasGoodHit)
+														misses++;
+													updateAccuracy();
+												}
+											}
 									}
 								}
 							}
 							else
 							{
-								if (!daNote.isSustainNote)
-									health -= 0.10;
-								vocals.volume = 0;
-								if (theFunne && !daNote.isSustainNote)
-									noteMiss(daNote.noteData, daNote);
-
-								if (daNote.isParent)
-								{
-									health -= 0.20; // give a health punishment for failing a LN
-									trace("hold fell over at the start");
-									for (i in daNote.children)
-									{
-										i.alpha = 0.3;
-										i.sustainActive = false;
-										trace(i.alpha);
-									}
-								}
-								else
-								{
-									if (!daNote.wasGoodHit
-										&& daNote.isSustainNote
-										&& daNote.sustainActive
-										&& daNote.spotInLine != daNote.parent.children.length)
-									{
-										health -= 0.20; // give a health punishment for failing a LN
-										trace("hold fell over at " + daNote.spotInLine);
-										for (i in daNote.parent.children)
+								switch (daNote.noteType) {
+									case 'info' | 'shiny':
+										
+									default:
+										if (!daNote.isSustainNote)
+											health -= 0.10;
+										vocals.volume = 0;
+										if (theFunne && !daNote.isSustainNote)
+											noteMiss(daNote.noteData, daNote);
+		
+										if (daNote.isParent)
 										{
-											i.alpha = 0.3;
-											i.sustainActive = false;
-											trace(i.alpha);
+											health -= 0.20; // give a health punishment for failing a LN
+											trace("hold fell over at the start");
+											for (i in daNote.children)
+											{
+												i.alpha = 0.3;
+												i.sustainActive = false;
+												trace(i.alpha);
+											}
 										}
-										if (daNote.parent.wasGoodHit)
-											misses++;
-										updateAccuracy();
-									}
+										else
+										{
+											if (!daNote.wasGoodHit
+												&& daNote.isSustainNote
+												&& daNote.sustainActive
+												&& daNote.spotInLine != daNote.parent.children.length)
+											{
+												health -= 0.20; // give a health punishment for failing a LN
+												trace("hold fell over at " + daNote.spotInLine);
+												for (i in daNote.parent.children)
+												{
+													i.alpha = 0.3;
+													i.sustainActive = false;
+													trace(i.alpha);
+												}
+												if (daNote.parent.wasGoodHit)
+													misses++;
+												updateAccuracy();
+											}
+										}
 								}
+								
 							}
 						}
 
