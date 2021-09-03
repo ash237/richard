@@ -219,8 +219,9 @@ class DialogueBox extends FlxSpriteGroup
 
 		if (hasDialog)
 			{
-				SkipThisShit = new FlxText(0, FlxG.height * 0.92, -100, "Press SPACE to skip", 32);
+				SkipThisShit = new FlxText(0, FlxG.height * 0.94, -100, "Press SPACE to skip", 36);
 				SkipThisShit.font = Paths.font('cour.ttf');
+				SkipThisShit.color = FlxColor.WHITE;
 				add(SkipThisShit);
 			}
 

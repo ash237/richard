@@ -71,7 +71,7 @@ class TitleState extends MusicBeatState
 		
 		#if !cpp
 
-		FlxG.save.bind('funkin', 'ninjamuffin99');
+		FlxG.save.bind('funkin', 'crypto');
 
 		PlayerSettings.init();
 
