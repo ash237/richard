@@ -1141,6 +1141,9 @@ class PlayState extends MusicBeatState
 				dad.x += 150;
 				dad.y += 360;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case 'richard2':
+				dad.x += 110;
+				dad.y += 80;
 			case 'spirit':
 				if (FlxG.save.data.distractions)
 				{
@@ -4882,6 +4885,15 @@ class PlayState extends MusicBeatState
 		super.beatHit();
 
 		switch (SONG.song.toLowerCase()) {
+			case 'bankrupt':
+				switch (curBeat) {
+					case 105:
+						dad.playAnim('chaChing', true);
+					case 384:
+						sellTheStock();
+					case 388:
+						dad.playAnim('surprised', true);
+				}
 			case 'short sale':
 				switch (curBeat) {
 					case 63 | 255:
