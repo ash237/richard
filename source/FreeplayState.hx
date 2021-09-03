@@ -339,11 +339,11 @@ class FreeplayState extends MusicBeatState
 				//openSubState(new DiffOverview());
 		}
 
-		if (upP)
+		if (upP || FlxG.keys.justPressed.W)
 		{
 			changeSelection(-1);
 		}
-		if (downP)
+		if (downP || FlxG.keys.justPressed.S)
 		{
 			changeSelection(1);
 		}
@@ -351,9 +351,9 @@ class FreeplayState extends MusicBeatState
 		//if (FlxG.keys.justPressed.SPACE && !openedPreview)
 			//openSubState(new DiffOverview());
 
-		if (FlxG.keys.justPressed.LEFT)
+		if (FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.A)
 			changeDiff(-1);
-		if (FlxG.keys.justPressed.RIGHT)
+		if (FlxG.keys.justPressed.RIGHT || FlxG.keys.justPressed.D)
 			changeDiff(1);
 
 		if (controls.BACK)

@@ -516,7 +516,12 @@ class Character extends FlxSprite
 						playAnim('danceRight');
 					else
 						playAnim('danceLeft');
-				
+				case 'richard2':
+					if (!animation.curAnim.name.startsWith('troll') || animation.curAnim.name.startsWith('troll') && animation.curAnim.finished)
+						if (!animation.curAnim.name.startsWith('surprised'))
+							if (!animation.curAnim.name.startsWith('sell') || animation.curAnim.name.startsWith('sell') && animation.curAnim.finished)
+								if (!animation.curAnim.name.startsWith('chaChing') || animation.curAnim.name.startsWith('chaChing') && animation.curAnim.finished)
+									playAnim('idle', forced);
 				default:
 					if (!animation.curAnim.name.startsWith('troll') || animation.curAnim.name.startsWith('troll') && animation.curAnim.finished)
 						if (!animation.curAnim.name.startsWith('surprised') || animation.curAnim.name.startsWith('surprised') && animation.curAnim.finished)

@@ -4968,8 +4968,10 @@ class PlayState extends MusicBeatState
 					case 105 | 297:
 						dad.playAnim('chaChing', true);
 					case 384:
+						graphHealthMode = false;
 						sellTheStock();
 					case 388:
+						
 						dad.playAnim('surprised', true);
 				}
 			case 'short sale':

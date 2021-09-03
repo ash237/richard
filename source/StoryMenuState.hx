@@ -291,12 +291,12 @@ class StoryMenuState extends MusicBeatState
 					}
 				}
 
-				if (FlxG.keys.justPressed.UP)
+				if (FlxG.keys.justPressed.UP || FlxG.keys.justPressed.W)
 				{
 					changeWeek(-1);
 				}
 
-				if (FlxG.keys.justPressed.DOWN)
+				if (FlxG.keys.justPressed.DOWN || FlxG.keys.justPressed.S)
 				{
 					changeWeek(1);
 				}

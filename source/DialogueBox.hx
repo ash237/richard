@@ -56,6 +56,9 @@ class DialogueBox extends FlxSpriteGroup
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{
+			default:
+				FlxG.sound.playMusic(Paths.music('airplane'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'senpai':
 				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
