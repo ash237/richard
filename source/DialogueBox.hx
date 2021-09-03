@@ -209,7 +209,7 @@ class DialogueBox extends FlxSpriteGroup
 		if (hasDialog)
 			{
 				SkipThisShit = new FlxText(0, FlxG.height * 0.92, -100, "Press SPACE to skip", 32);
-				SkipThisShit.font = 'Pixel Arial 11 Bold';
+				SkipThisShit.font = Paths.font('cour.ttf');
 				add(SkipThisShit);
 			}
 
@@ -220,12 +220,12 @@ class DialogueBox extends FlxSpriteGroup
 		}
 
 		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
-		dropText.font = 'Pixel Arial 11 Bold';
+		dropText.font = Paths.font('cour.ttf');
 		dropText.color = 0xFFD89494;
 		add(dropText);
 
 		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
-		swagDialogue.font = 'Pixel Arial 11 Bold';
+		swagDialogue.font = Paths.font('cour.ttf');
 		swagDialogue.color = 0xFF3F2021;
 		add(swagDialogue);
 		

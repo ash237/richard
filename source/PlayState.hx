@@ -946,7 +946,7 @@ class PlayState extends MusicBeatState
 						theGraph.active = false;
 						add(theGraph);
 
-						graphPointer = new FlxObject(1140, 88, 0, 0);
+						graphPointer = new FlxObject(1140, 200, 0, 0);
 						add(graphPointer);
 						graphPosition = graphPointer.y;
 						grpGraph = new FlxTypedGroup<FlxSprite>();
@@ -1004,7 +1004,7 @@ class PlayState extends MusicBeatState
 						theGraph.active = false;
 						add(theGraph);
 
-						graphPointer = new FlxObject(1140, 88, 0, 0);
+						graphPointer = new FlxObject(1140, 200, 0, 0);
 						add(graphPointer);
 						graphPosition = graphPointer.y;
 						grpGraph = new FlxTypedGroup<FlxSprite>();
