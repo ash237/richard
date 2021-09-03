@@ -3125,10 +3125,7 @@ class PlayState extends MusicBeatState
 			if (healthBarBG.x != healthBarBGxpos)
 				healthBarBG.x = FlxMath.lerp(healthBarBG.x, healthBarBGxpos, 0.1);
 			updateGraph();
-			if (shinyMode && graphMoveTimer == 1) {
-				graphPointer.y += FlxG.random.float(4, 4.1, [0]);
-				neutralGraphPos = graphPointer.y;
-			}
+			
 			var holdArray:Array<Bool> = [controls.LEFT, controls.DOWN, controls.UP, controls.RIGHT];
 
 			notes.forEachAlive(function(daNote:Note)
@@ -4452,6 +4449,11 @@ class PlayState extends MusicBeatState
 
 		var theColor = FlxColor.ORANGE;
 
+		if (shinyMode && graphMoveTimer == 1) {
+			graphPointer.y += FlxG.random.float(4, 4.1, [0]);
+			neutralGraphPos = graphPointer.y;
+		}
+		
 		if (graphMoveTimer > 0) {
 			graphMoveTimer--;
 		} else if (graphMoveTimer == 0) {
