@@ -129,10 +129,10 @@ class TitleState extends MusicBeatState
 		add(bg);
 
 		if (Main.watermarks) {
-			logoBl = new FlxSprite(-150, 1500);
+			logoBl = new FlxSprite(450, 1900);
 			logoBl.frames = Paths.getSparrowAtlas('KadeEngineLogoBumpin');
 		} else {
-			logoBl = new FlxSprite(-150, 1500);
+			logoBl = new FlxSprite(450, 1900);
 			logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		}
 		if(FlxG.save.data.antialiasing)
@@ -437,7 +437,7 @@ class TitleState extends MusicBeatState
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 
-			FlxTween.tween(logoBl,{y: -100}, 1.4, {ease: FlxEase.expoInOut});
+			FlxTween.tween(logoBl,{y: -50}, 1.4, {ease: FlxEase.expoInOut});
 
 			logoBl.angle = -4;
 
