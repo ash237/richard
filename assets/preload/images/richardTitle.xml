@@ -2,16 +2,16 @@
 <TextureAtlas imagePath="richardTitle.png">
 	<!-- Created with Adobe Animate version 21.0.8.42666 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="hi evity0000" x="3" y="3" width="426" height="401"/>
-	<SubTexture name="hi evity0001" x="432" y="3" width="426" height="401"/>
-	<SubTexture name="hi evity0002" x="861" y="3" width="426" height="401"/>
-	<SubTexture name="hi evity0003" x="1290" y="3" width="426" height="401"/>
-	<SubTexture name="hi evity0004" x="3" y="407" width="426" height="401"/>
-	<SubTexture name="hi evity0005" x="432" y="407" width="426" height="401"/>
-	<SubTexture name="hi evity0006" x="861" y="407" width="426" height="401"/>
-	<SubTexture name="hi evity0007" x="861" y="407" width="426" height="401"/>
-	<SubTexture name="hi evity0008" x="861" y="407" width="426" height="401"/>
-	<SubTexture name="hi evity0009" x="861" y="407" width="426" height="401"/>
-	<SubTexture name="hi evity0010" x="861" y="407" width="426" height="401"/>
-	<SubTexture name="hi evity0011" x="861" y="407" width="426" height="401"/>
+	<SubTexture name="hi evity0000" x="3" y="3" width="551" height="519"/>
+	<SubTexture name="hi evity0001" x="557" y="3" width="551" height="519"/>
+	<SubTexture name="hi evity0002" x="1111" y="3" width="551" height="519"/>
+	<SubTexture name="hi evity0003" x="3" y="525" width="551" height="519"/>
+	<SubTexture name="hi evity0004" x="557" y="525" width="551" height="519"/>
+	<SubTexture name="hi evity0005" x="1111" y="525" width="551" height="519"/>
+	<SubTexture name="hi evity0006" x="3" y="1047" width="551" height="519"/>
+	<SubTexture name="hi evity0007" x="3" y="1047" width="551" height="519"/>
+	<SubTexture name="hi evity0008" x="3" y="1047" width="551" height="519"/>
+	<SubTexture name="hi evity0009" x="3" y="1047" width="551" height="519"/>
+	<SubTexture name="hi evity0010" x="3" y="1047" width="551" height="519"/>
+	<SubTexture name="hi evity0011" x="3" y="1047" width="551" height="519"/>
 </TextureAtlas>
