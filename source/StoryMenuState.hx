@@ -166,10 +166,11 @@ class StoryMenuState extends MusicBeatState
 
 		trace("Line 96");
 
-		richard = new Richard(100, 100, 1, false);
-		grpWeekCharacters.add(new MenuCharacter(0, 100, 0.5, false));
+		richard = new Richard(100, 60, 1, false);
+		richard.screenCenter(X);
+		/*grpWeekCharacters.add(new MenuCharacter(0, 100, 0.5, false));
 		grpWeekCharacters.add(new MenuCharacter(450, 25, 0.9, true));
-		grpWeekCharacters.add(new MenuCharacter(850, 100, 0.5, true));
+		grpWeekCharacters.add(new MenuCharacter(850, 100, 0.5, true));*/
 
 		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
@@ -349,7 +350,7 @@ class StoryMenuState extends MusicBeatState
 
 				grpWeekText.members[curWeek].startFlashing();
 
-				grpWeekCharacters.members[1].animation.play('bfConfirm');
+				//grpWeekCharacters.members[1].animation.play('bfConfirm');
 				stopspamming = true;
 			}
 
@@ -453,9 +454,9 @@ class StoryMenuState extends MusicBeatState
 	function updateText()
 	{
 		richard.setCharacter('richard');
-		grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
+		/*grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
 		grpWeekCharacters.members[1].setCharacter(weekCharacters[curWeek][1]);
-		grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
+		grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);*/
 
 		txtTracklist.text = "Tracks\n";
 		var stringThing:Array<String> = weekData()[curWeek];
@@ -492,8 +493,8 @@ class StoryMenuState extends MusicBeatState
 		super.beatHit();
 
 		richard.bopHead();
-		grpWeekCharacters.members[0].bopHead();
+		/*grpWeekCharacters.members[0].bopHead();
 		grpWeekCharacters.members[1].bopHead();
-		grpWeekCharacters.members[2].bopHead();
+		grpWeekCharacters.members[2].bopHead();*/
 	}
 }

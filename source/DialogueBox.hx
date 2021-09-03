@@ -112,6 +112,8 @@ class DialogueBox extends FlxSpriteGroup
 				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
 				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
+				box.animation.addByPrefix('loudOpen', 'speech bubble loud open0', 24, false);
+				box.animation.addByIndices('loud', 'AHH speech bubble0', [4], "", 24, true);
 			case 'thorns':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-evil');
