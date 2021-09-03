@@ -480,7 +480,9 @@ class Character extends FlxSprite
 			case 'gf':
 				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
 					playAnim('danceRight');
-				
+			case 'richard2':
+				if (animation.curAnim.name == 'surprised' && animation.curAnim.curFrame == 32)
+					FlxG.sound.play(Paths.sound('Glass_Shattering_Sound_Effect'), 1);
 		}
 
 		super.update(elapsed);
