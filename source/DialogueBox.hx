@@ -441,6 +441,7 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				box.flipX = false;
 				if (!portraitRight.visible)
 				{
 					portraitRight.visible = true;
@@ -453,6 +454,7 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				box.flipX = false;
 				if (!portraitRight.visible)
 				{
 					bruhbf.visible = true;
@@ -465,6 +467,7 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				box.flipX = false;
 				if (!portraitRight.visible)
 				{
 					smugbf.visible = true;
