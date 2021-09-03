@@ -103,6 +103,8 @@ class PlayState extends MusicBeatState
 	public static var loadRep:Bool = false;
 	public static var inResults:Bool = false;
 
+	var graphHealthMode:Bool = false;
+
 	public static var noteBools:Array<Bool> = [false, false, false, false];
 
 	var halloweenLevel:Bool = false;
@@ -1142,6 +1144,7 @@ class PlayState extends MusicBeatState
 				dad.y += 360;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'richard2':
+				graphHealthMode = true;
 				dad.x += 110;
 				dad.y += 80;
 			case 'spirit':
@@ -3123,6 +3126,9 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic)
 		{
+			if (graphHealthMode && graphMode == 2) {
+				health -= 0.001;
+			}
 			if (healthBar.x != healthBarxpos)
 				healthBar.x = FlxMath.lerp(healthBar.x, healthBarxpos, 0.1);
 			if (healthBarBG.x != healthBarBGxpos)
@@ -3265,7 +3271,7 @@ class PlayState extends MusicBeatState
 						case 'up':
 							switchGraphMode(1);
 						default:
-							if (dad.animation.curAnim.name != 'chaChing')
+							if (dad.animation.curAnim.name != 'chaChing' || dad.animation.curAnim.name.startsWith('chaChing') && dad.animation.curAnim.finished)
 								dad.playAnim('sing' + dataSuffix[singData] + altAnim, true);
 							if (FlxG.save.data.cpuStrums)
 								{
@@ -3374,7 +3380,18 @@ class PlayState extends MusicBeatState
 												noteMiss(daNote.noteData, daNote);
 											if (daNote.isParent)
 											{
-												health -= 0.20; // give a health punishment for failing a LN
+												if (graphHealthMode) {
+													switch (graphMode) {
+														default:
+															health -= 0.20;
+														case 1:
+															health -= 0.10;
+														case 2:
+															health -= 0.30;
+													}
+												}else 
+													health -= 0.20;
+												 // give a health punishment for failing a LN
 												trace("hold fell over at the start");
 												for (i in daNote.children)
 												{
@@ -3389,7 +3406,17 @@ class PlayState extends MusicBeatState
 													&& daNote.sustainActive
 													&& daNote.spotInLine != daNote.parent.children.length)
 												{
-													health -= 0.20; // give a health punishment for failing a LN
+													if (graphHealthMode) {
+														switch (graphMode) {
+															default:
+																health -= 0.20;
+															case 1:
+																health -= 0.10;
+															case 2:
+																health -= 0.30;
+														}
+													}else 
+														health -= 0.20; // give a health punishment for failing a LN
 													trace("hold fell over at " + daNote.spotInLine);
 													for (i in daNote.parent.children)
 													{
@@ -3418,7 +3445,17 @@ class PlayState extends MusicBeatState
 		
 										if (daNote.isParent)
 										{
-											health -= 0.20; // give a health punishment for failing a LN
+											if (graphHealthMode) {
+												switch (graphMode) {
+													default:
+														health -= 0.20;
+													case 1:
+														health -= 0.10;
+													case 2:
+														health -= 0.30;
+												}
+											}else 
+												health -= 0.20; // give a health punishment for failing a LN
 											trace("hold fell over at the start");
 											for (i in daNote.children)
 											{
@@ -3434,7 +3471,17 @@ class PlayState extends MusicBeatState
 												&& daNote.sustainActive
 												&& daNote.spotInLine != daNote.parent.children.length)
 											{
-												health -= 0.20; // give a health punishment for failing a LN
+												if (graphHealthMode) {
+													switch (graphMode) {
+														default:
+															health -= 0.20;
+														case 1:
+															health -= 0.10;
+														case 2:
+															health -= 0.30;
+													}
+												}else 
+													health -= 0.20; // give a health punishment for failing a LN
 												trace("hold fell over at " + daNote.spotInLine);
 												for (i in daNote.parent.children)
 												{
@@ -3692,7 +3739,17 @@ class PlayState extends MusicBeatState
 				score = -300;
 				combo = 0;
 				misses++;
-				health -= 0.06;
+				if (graphHealthMode) {
+					switch (graphMode) {
+						default:
+							health -= 0.06;
+						case 1:
+							health -= 0.03;
+						case 2:
+							health -= 0.09;
+					}
+				}else 
+					health -= 0.06;
 				ss = false;
 				shits++;
 				if (FlxG.save.data.accuracyMod == 0)
@@ -3700,7 +3757,17 @@ class PlayState extends MusicBeatState
 			case 'bad':
 				daRating = 'bad';
 				score = 0;
-				health -= 0.03;
+				if (graphHealthMode) {
+					switch (graphMode) {
+						default:
+							health -= 0.03;
+						case 1:
+							health -= 0.01;
+						case 2:
+							health -= 0.06;
+					}
+				}else 
+					health -= 0.03;
 				ss = false;
 				bads++;
 				if (FlxG.save.data.accuracyMod == 0)
@@ -3713,8 +3780,19 @@ class PlayState extends MusicBeatState
 				if (FlxG.save.data.accuracyMod == 0)
 					totalNotesHit += 0.75;
 			case 'sick':
-				if (health < 2)
-					health += 0.04;
+				if (graphHealthMode) {
+					switch (graphMode) {
+						default:
+							if (health < 2)
+								health += 0.04;
+						case 1:
+							if (health < 2)
+								health += 0.08;
+
+					}
+				}else 
+					if (health < 2)
+						health += 0.04;
 				if (FlxG.save.data.accuracyMod == 0)
 					totalNotesHit += 1;
 				sicks++;
@@ -4887,7 +4965,7 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase()) {
 			case 'bankrupt':
 				switch (curBeat) {
-					case 105:
+					case 105 | 297:
 						dad.playAnim('chaChing', true);
 					case 384:
 						sellTheStock();
