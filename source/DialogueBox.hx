@@ -91,17 +91,20 @@ class DialogueBox extends FlxSpriteGroup
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
+				box.animation.addByPrefix('loudOpen', 'speech bubble loud open', 24, false);
+				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24, true);
+				box.animation.addByIndices('loud', 'AHH speech bubble', [4], "", 24, true);
 			case 'short sale':
-				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
+				box.animation.addByPrefix('loudOpen', 'speech bubble loud open', 24, false);
+				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24, true);
+				box.animation.addByIndices('loud', 'AHH speech bubble', [4], "", 24, true);
 			case 'bankrupt':
 				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
+				box.animation.addByPrefix('loudOpen', 'speech bubble loud open', 24, false);
+				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24, true);
+				box.animation.addByIndices('loud', 'AHH speech bubble', [4], "", 24, true);
 			case 'thorns':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-evil');
@@ -235,6 +238,11 @@ class DialogueBox extends FlxSpriteGroup
 				box.animation.play('normal');
 				dialogueOpened = true;
 			}
+			else if (box.animation.curAnim.name == 'loudOpen' && box.animation.curAnim.finished)
+				{
+					box.animation.play('loud');
+					dialogueOpened = true;
+				}
 		}
 
 		if (FlxG.keys.justPressed.SPACE && dialogueStarted == true)
@@ -353,6 +361,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				box.scale.set(1, 1);
+				box.setPosition(50, 350);
+				box.animation.play('normalOpen');
 				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
@@ -367,6 +378,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				box.scale.set(1, 1);
+				box.setPosition(50, 350);
+				box.animation.play('normalOpen');
 				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
@@ -382,6 +396,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardnormal.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				box.scale.set(1, 1);
+				box.setPosition(50, 350);
+				box.animation.play('normalOpen');
 				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
@@ -397,6 +414,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardnormal.visible = false;
 				richardchac.visible = false;
 				richardsmile.visible = false;
+				box.scale.set(1, 1);
+				box.setPosition(50, 350);
+				box.animation.play('normalOpen');
 				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
@@ -412,6 +432,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardnormal.visible = false;
 				richardchac.visible = false;
 				richardsmile.visible = false;
+				box.scale.set(1, 1);
+				box.setPosition(50, 350);
+				box.animation.play('normalOpen');
 				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
@@ -427,6 +450,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardnormal.visible = false;
 				richardchac.visible = false;
 				richardsmile.visible = false;
+				box.scale.set(1, 1);
+				box.setPosition(50, 350);
+				box.animation.play('normalOpen');
 				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
@@ -441,6 +467,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				box.scale.set(1, 1);
+				box.setPosition(50, 350);
+				box.animation.play('normalOpen');
 				box.flipX = false;
 				if (!portraitRight.visible)
 				{
@@ -454,6 +483,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				box.scale.set(0.8, 0.8);
+				box.setPosition(-50, 263);
+				box.animation.play('loudOpen');
 				box.flipX = false;
 				if (!portraitRight.visible)
 				{
@@ -467,6 +499,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				box.scale.set(1, 1);
+				box.setPosition(50, 350);
+				box.animation.play('normalOpen');
 				box.flipX = false;
 				if (!portraitRight.visible)
 				{
