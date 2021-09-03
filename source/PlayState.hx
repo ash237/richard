@@ -973,6 +973,64 @@ class PlayState extends MusicBeatState
 						graphBurstTimer = FlxG.random.int(90, 150);
 
 					}
+
+				case 'airplane2':
+					{
+						defaultCamZoom = 0.6;
+						curStage = 'airplane';
+
+						var sky:FlxSprite = new FlxSprite(-600, -600).loadGraphic(Paths.image('rich/Sky phase 1/Sky Storm', 'shared'));
+						if(FlxG.save.data.antialiasing)
+							{
+								sky.antialiasing = true;
+							}
+						sky.scrollFactor.set(0.6, 0.6);
+						add(sky);
+						var bg:FlxSprite = new FlxSprite(-600, -600).loadGraphic(Paths.image('rich/Background', 'shared'));
+						if(FlxG.save.data.antialiasing)
+							{
+								bg.antialiasing = true;
+							}
+						bg.scrollFactor.set(1, 1);
+						bg.active = false;
+						add(bg);
+
+						var theGraph:FlxSprite = new FlxSprite(646, 80).loadGraphic(Paths.image('rich/TV', 'shared'));
+						if(FlxG.save.data.antialiasing)
+							{
+								theGraph.antialiasing = true;
+							}
+						theGraph.scrollFactor.set(1, 1);
+						theGraph.active = false;
+						add(theGraph);
+
+						graphPointer = new FlxObject(1140, 188, 0, 0);
+						add(graphPointer);
+						graphPosition = graphPointer.y;
+						grpGraph = new FlxTypedGroup<FlxSprite>();
+						add(grpGraph);
+
+						grpGraphIndicators = new FlxTypedGroup<FlxSprite>();
+						add(grpGraphIndicators);
+
+						for (i in 0...3) {
+							var indic:FlxSprite = new FlxSprite(681, 334);
+							indic.visible = false;
+							switch (i) {
+								case 0:
+									indic.loadGraphic(Paths.image('rich/TV graphs/Graph STABLE', 'shared'));
+									indic.visible = true;
+								case 1:
+									indic.loadGraphic(Paths.image('rich/TV graphs/Graph UP', 'shared'));
+								case 2:
+									indic.loadGraphic(Paths.image('rich/TV graphs/Graph DOWN', 'shared'));
+							}
+							grpGraphIndicators.add(indic);
+						}
+						neutralGraphPos = graphPointer.y;
+						graphBurstTimer = FlxG.random.int(90, 150);
+
+					}
 				default:
 					{
 						defaultCamZoom = 0.9;
