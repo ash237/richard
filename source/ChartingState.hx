@@ -2520,6 +2520,12 @@ class ChartingState extends MusicBeatState
 			noteType = 'shiny';
 		else if (FlxG.keys.pressed.M)
 			noteType = 'info';
+		else if (FlxG.keys.pressed.Q)
+			noteType = 'down';
+		else if (FlxG.keys.pressed.Z)
+			noteType = 'up';
+		else if (FlxG.keys.pressed.X)
+			noteType = 'middle';
 
 		if (n != null)
 			section.sectionNotes.push([n.strumTime, n.noteData, n.sustainLength, n.noteType]);

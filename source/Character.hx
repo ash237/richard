@@ -517,7 +517,10 @@ class Character extends FlxSprite
 				
 				default:
 					if (!animation.curAnim.name.startsWith('troll') || animation.curAnim.name.startsWith('troll') && animation.curAnim.finished)
-						playAnim('idle', forced);
+						if (!animation.curAnim.name.startsWith('surprised') || animation.curAnim.name.startsWith('surprised') && animation.curAnim.finished)
+							if (!animation.curAnim.name.startsWith('sell') || animation.curAnim.name.startsWith('sell') && animation.curAnim.finished)
+								if (!animation.curAnim.name.startsWith('chaChing') || animation.curAnim.name.startsWith('chaChing') && animation.curAnim.finished)
+									playAnim('idle', forced);
 			}
 		}
 	}

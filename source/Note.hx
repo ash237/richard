@@ -65,6 +65,9 @@ class Note extends FlxSprite
 
 	public var children:Array<Note> = [];
 
+	public var noteShouldMove:Bool = true;
+
+	public var noteShouldShow:Bool = true;
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inCharter:Bool = false, ?noteType:String = 'normal')
 	{
 		super();
@@ -129,6 +132,33 @@ class Note extends FlxSprite
 						/*animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
 						animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails*/
 					}
+				case 'up':
+					frames = Paths.getSparrowAtlas('ind', 'shared');
+
+					for (i in 0...4)
+					{
+						animation.addByPrefix(dataColor[i] + 'Scroll', 'green alone'); // Normal notes
+						animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
+						animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
+					}
+				case 'down':
+					frames = Paths.getSparrowAtlas('ind', 'shared');
+
+					for (i in 0...4)
+					{
+						animation.addByPrefix(dataColor[i] + 'Scroll', 'blue alone'); // Normal notes
+						animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
+						animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
+					}
+				case 'middle':
+					frames = Paths.getSparrowAtlas('ind', 'shared');
+
+					for (i in 0...4)
+					{
+						animation.addByPrefix(dataColor[i] + 'Scroll', 'purple alone'); // Normal notes
+						animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
+						animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
+					}
 				default:
 					frames = Paths.getSparrowAtlas('NOTE_assets');
 
@@ -178,6 +208,7 @@ class Note extends FlxSprite
 							for (i in 0...4)
 							{
 								animation.addByPrefix(dataColor[i] + 'Scroll', dataDirections[i] + '0'); // Normal notes
+								animation.addByPrefix(dataDirections[i] + 'Hit', dataDirections[i] + ' hit');
 								/*animation.addByPrefix(dataColor[i] + 'holsd', dataColor[i] + ' hold'); // Hold
 								animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails*/
 							}
@@ -189,11 +220,45 @@ class Note extends FlxSprite
 							for (i in 0...4)
 							{
 								animation.addByPrefix(dataColor[i] + 'Scroll', dataDirections[i] + '0'); // Normal notes
+								animation.addByPrefix(dataDirections[i] + 'Hit', dataDirections[i] + 'Hit');
 								/*animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
 								animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails*/
 							}
 							noteYOff = -17;
 							noteXOff = -20;
+						case 'up':
+							noteShouldShow = false;
+							frames = Paths.getSparrowAtlas('ind', 'shared');
+
+							for (i in 0...4)
+							{
+								animation.addByPrefix(dataColor[i] + 'Scroll', 'green alone'); // Normal notes
+								animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
+								animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
+							}
+							color = FlxColor.TRANSPARENT;
+						case 'down':
+							noteShouldShow = false;
+							frames = Paths.getSparrowAtlas('ind', 'shared');
+
+							for (i in 0...4)
+							{
+								animation.addByPrefix(dataColor[i] + 'Scroll', 'blue alone'); // Normal notes
+								animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
+								animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
+							}
+							color = FlxColor.TRANSPARENT;
+						case 'middle':
+							noteShouldShow = false;
+							frames = Paths.getSparrowAtlas('ind', 'shared');
+
+							for (i in 0...4)
+							{
+								animation.addByPrefix(dataColor[i] + 'Scroll', 'purple alone'); // Normal notes
+								animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
+								animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
+							}
+							color = FlxColor.TRANSPARENT;
 						default:
 							frames = Paths.getSparrowAtlas('NOTE_assets');
 
@@ -309,11 +374,21 @@ class Note extends FlxSprite
 			}
 			else
 			{
-				if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
-					&& strumTime < Conductor.songPosition + Conductor.safeZoneOffset)
-					canBeHit = true;
-				else
-					canBeHit = false;
+				switch (noteType) {
+					case 'shiny' | 'info':
+						if (strumTime > Conductor.songPosition - (Conductor.safeZoneOffset * 0.6)
+							&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.6))
+							canBeHit = true;
+						else
+							canBeHit = false;
+					default:
+						if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
+							&& strumTime < Conductor.songPosition + Conductor.safeZoneOffset)
+							canBeHit = true;
+						else
+							canBeHit = false;
+				}
+				
 			}
 
 			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset * Conductor.timeScale && !wasGoodHit)
