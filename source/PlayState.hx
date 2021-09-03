@@ -1458,7 +1458,7 @@ class PlayState extends MusicBeatState
 				case 'thorns':
 					schoolIntro(doof);
 				case 'get-rich':
-					schoolIntro(doof);
+					showItBitch(doof);
 				case 'short-sale':
 					showItBitch(doof);
 				case 'bankrupt':
