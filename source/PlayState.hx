@@ -500,7 +500,7 @@ class PlayState extends MusicBeatState
 			case 'short-sale':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/short-sale/dialogue'));
 			case 'bankrupt':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('data/thorns/thornsDialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/bankrupt/dialogue'));
 		}
 
 		// defaults if no stage was found in chart
@@ -1458,7 +1458,7 @@ class PlayState extends MusicBeatState
 				case 'thorns':
 					schoolIntro(doof);
 				case 'get-rich':
-					schoolIntro(doof);
+					showItBitch(doof);
 				case 'short-sale':
 					showItBitch(doof);
 				case 'bankrupt':

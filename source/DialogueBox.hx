@@ -30,13 +30,19 @@ class DialogueBox extends FlxSpriteGroup
 
 	var portraitLeft:FlxSprite;
 	var portraitRight:FlxSprite;
+
 	var bruhbf:FlxSprite;
 	var smugbf:FlxSprite;
+
 	var richardnormal:FlxSprite;
 	var richardsmile:FlxSprite;
 	var richardsmug:FlxSprite;
 	var richardsurp:FlxSprite;
 	var richardchac:FlxSprite;
+
+	var richardangry:FlxSprite;
+	var richardangrier:FlxSprite;
+	var richardveryangry:FlxSprite;
 
 	var SkipThisShit:FlxText;
 
@@ -63,7 +69,7 @@ class DialogueBox extends FlxSpriteGroup
 		bgFade.alpha = 0;
 		add(bgFade);
 
-		new FlxTimer().start(0.83, function(tmr:FlxTimer)
+		new FlxTimer().start(0.23, function(tmr:FlxTimer)
 		{
 			bgFade.alpha += (1 / 5) * 0.7;
 			if (bgFade.alpha > 0.7)
@@ -177,6 +183,24 @@ class DialogueBox extends FlxSpriteGroup
 		richardchac.scrollFactor.set();
 		add(richardchac);
 		richardchac.visible = false;
+
+		richardangry = new FlxSprite(20, 40).loadGraphic(Paths.image('rich/portraits/angry/Angry', 'shared'));
+		richardangry.updateHitbox();
+		richardangry.scrollFactor.set();
+		add(richardangry);
+		richardangry.visible = false;
+
+		richardangrier = new FlxSprite(20, 40).loadGraphic(Paths.image('rich/portraits/angry/Angrier', 'shared'));
+		richardangrier.updateHitbox();
+		richardangrier.scrollFactor.set();
+		add(richardangrier);
+		richardangrier.visible = false;
+
+		richardveryangry = new FlxSprite(20, 40).loadGraphic(Paths.image('rich/portraits/angry/VeryAngry', 'shared'));
+		richardveryangry.updateHitbox();
+		richardveryangry.scrollFactor.set();
+		add(richardveryangry);
+		richardveryangry.visible = false;
 		
 		box.animation.play('normalOpen');
 		box.updateHitbox();
@@ -258,6 +282,9 @@ class DialogueBox extends FlxSpriteGroup
 						richardsurp.visible = false;
 						richardchac.visible = false;
 						richardsmug.visible = false;
+						richardangry.visible = false;
+						richardangrier.visible = false;
+						richardveryangry.visible = false;
 						swagDialogue.alpha -= 1 / 5;
 						dropText.alpha = swagDialogue.alpha;
 					}, 5);
@@ -308,6 +335,9 @@ class DialogueBox extends FlxSpriteGroup
 						richardsurp.visible = false;
 						richardchac.visible = false;
 						richardsmug.visible = false;
+						richardangry.visible = false;
+						richardangrier.visible = false;
+						richardveryangry.visible = false;
 						swagDialogue.alpha -= 1 / 5;
 						dropText.alpha = swagDialogue.alpha;
 					}, 5);
@@ -353,6 +383,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				richardangry.visible = false;
+				richardangrier.visible = false;
+				richardveryangry.visible = false;
 				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
@@ -367,6 +400,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				richardangry.visible = false;
+				richardangrier.visible = false;
+				richardveryangry.visible = false;
 				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
@@ -382,6 +418,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardnormal.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				richardangry.visible = false;
+				richardangrier.visible = false;
+				richardveryangry.visible = false;
 				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
@@ -397,6 +436,9 @@ class DialogueBox extends FlxSpriteGroup
 				richardnormal.visible = false;
 				richardchac.visible = false;
 				richardsmile.visible = false;
+				richardangry.visible = false;
+				richardangrier.visible = false;
+				richardveryangry.visible = false;
 				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
@@ -412,6 +454,12 @@ class DialogueBox extends FlxSpriteGroup
 				richardnormal.visible = false;
 				richardchac.visible = false;
 				richardsmile.visible = false;
+				richardangry.visible = false;
+				richardangrier.visible = false;
+				richardveryangry.visible = false;
+				richardangry.visible = false;
+				richardangrier.visible = false;
+				richardveryangry.visible = false;
 				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
@@ -425,13 +473,69 @@ class DialogueBox extends FlxSpriteGroup
 				richardsmile.visible = false;
 				richardsmug.visible = false;
 				richardnormal.visible = false;
-				richardchac.visible = false;
+				richardsurp.visible = false;
 				richardsmile.visible = false;
+				richardangry.visible = false;
+				richardangrier.visible = false;
+				richardveryangry.visible = false;
 				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
-					richardsurp.visible = false;
 					richardchac.visible = true;
+				}
+			case 'richardangry':
+				portraitRight.visible = false;
+				portraitLeft.visible = false;
+				smugbf.visible = false;
+				bruhbf.visible = false;
+				richardsmile.visible = false;
+				richardsmug.visible = false;
+				richardnormal.visible = false;
+				richardsurp.visible = false;
+				richardsmile.visible = false;
+				richardchac.visible = false;
+				richardangrier.visible = false;
+				richardveryangry.visible = false;
+				box.flipX = true;
+				if (!portraitLeft.visible)
+				{
+					richardangry.visible = true;
+				}
+			case 'richardangrier':
+				portraitRight.visible = false;
+				portraitLeft.visible = false;
+				smugbf.visible = false;
+				bruhbf.visible = false;
+				richardsmile.visible = false;
+				richardsmug.visible = false;
+				richardnormal.visible = false;
+				richardsurp.visible = false;
+				richardsmile.visible = false;
+				richardchac.visible = false;
+				richardangry.visible = false;
+				richardveryangry.visible = false;
+				box.flipX = true;
+				if (!portraitLeft.visible)
+				{
+					richardangrier.visible = true;
+				}
+			case 'richardveryangry':
+				portraitRight.visible = false;
+				portraitLeft.visible = false;
+				smugbf.visible = false;
+				bruhbf.visible = false;
+				richardsmile.visible = false;
+				richardsmug.visible = false;
+				richardnormal.visible = false;
+				richardsurp.visible = false;
+				richardsmile.visible = false;
+				richardchac.visible = false;
+				richardangry.visible = false;
+				richardangrier.visible = false;
+				box.flipX = true;
+				if (!portraitLeft.visible)
+				{
+					richardveryangry.visible = true;
 				}
 			case 'bf':
 				portraitLeft.visible = false;
@@ -441,6 +545,10 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				richardangry.visible = false;
+				richardangrier.visible = false;
+				richardveryangry.visible = false;
+				box.flipX = false;
 				if (!portraitRight.visible)
 				{
 					portraitRight.visible = true;
@@ -453,6 +561,10 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				richardangry.visible = false;
+				richardangrier.visible = false;
+				richardveryangry.visible = false;
+				box.flipX = false;
 				if (!portraitRight.visible)
 				{
 					bruhbf.visible = true;
@@ -465,6 +577,10 @@ class DialogueBox extends FlxSpriteGroup
 				richardsurp.visible = false;
 				richardchac.visible = false;
 				richardsmug.visible = false;
+				richardangry.visible = false;
+				richardangrier.visible = false;
+				richardveryangry.visible = false;
+				box.flipX = false;
 				if (!portraitRight.visible)
 				{
 					smugbf.visible = true;
