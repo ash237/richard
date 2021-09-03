@@ -122,7 +122,7 @@ class TitleState extends MusicBeatState
 	{
 		persistentUpdate = true;
 
-		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('IntroBG'));
 		// bg.antialiasing = true;
 		// bg.setGraphicSize(Std.int(bg.width * 0.6));
 		// bg.updateHitbox();
@@ -132,7 +132,7 @@ class TitleState extends MusicBeatState
 			logoBl = new FlxSprite(-150, 1500);
 			logoBl.frames = Paths.getSparrowAtlas('KadeEngineLogoBumpin');
 		} else {
-			logoBl = new FlxSprite(-150, -100);
+			logoBl = new FlxSprite(-150, 1500);
 			logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		}
 		if(FlxG.save.data.antialiasing)
@@ -234,7 +234,7 @@ class TitleState extends MusicBeatState
 			FlxG.sound.playMusic(Paths.music('intro'), 0);
 
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
-			Conductor.changeBPM(160);
+			Conductor.changeBPM(80);
 			initialized = true;
 		}
 
