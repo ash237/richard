@@ -30,6 +30,11 @@ class DialogueBox extends FlxSpriteGroup
 
 	var portraitLeft:FlxSprite;
 	var portraitRight:FlxSprite;
+	var richardnormal:FlxSprite;
+	var richardsmile:FlxSprite;
+	var richardsmug:FlxSprite;
+	var richardsurp:FlxSprite;
+	var richardchac:FlxSprite;
 
 	var SkipThisShit:FlxText;
 
@@ -111,21 +116,49 @@ class DialogueBox extends FlxSpriteGroup
 		if (!hasDialog)
 			return;
 		
-		portraitLeft = new FlxSprite(-20, 40).loadGraphic(Paths.image('rich/portraits/happy/Upset', 'shared'));
-		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+		portraitLeft = new FlxSprite(20, 40).loadGraphic(Paths.image('rich/portraits/happy/Upset', 'shared'));
 		portraitLeft.updateHitbox();
 		portraitLeft.scrollFactor.set();
 		add(portraitLeft);
 		portraitLeft.visible = false;
 
-		portraitRight = new FlxSprite(0, 40);
-		portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
-		portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
-		portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+		portraitRight = new FlxSprite(780, 120).loadGraphic(Paths.image('rich/portraits/Bf/Normal', 'shared'));
+		portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.84));
 		portraitRight.updateHitbox();
+		portraitRight.antialiasing = true;
 		portraitRight.scrollFactor.set();
 		add(portraitRight);
 		portraitRight.visible = false;
+		
+		richardnormal = new FlxSprite(20, 40).loadGraphic(Paths.image('rich/portraits/happy/Normal', 'shared'));
+		richardnormal.updateHitbox();
+		richardnormal.scrollFactor.set();
+		add(richardnormal);
+		richardnormal.visible = false;
+
+		richardsmile = new FlxSprite(20, 40).loadGraphic(Paths.image('rich/portraits/happy/Smile', 'shared'));
+		richardsmile.updateHitbox();
+		richardsmile.scrollFactor.set();
+		add(richardsmile);
+		richardsmile.visible = false;
+
+		richardsmug = new FlxSprite(20, 40).loadGraphic(Paths.image('rich/portraits/happy/Smug', 'shared'));
+		richardsmug.updateHitbox();
+		richardsmug.scrollFactor.set();
+		add(richardsmug);
+		richardsmug.visible = false;
+
+		richardsurp = new FlxSprite(20, 40).loadGraphic(Paths.image('rich/portraits/happy/Surprised', 'shared'));
+		richardsurp.updateHitbox();
+		richardsurp.scrollFactor.set();
+		add(richardsurp);
+		richardsurp.visible = false;
+
+		richardchac = new FlxSprite(20, 40).loadGraphic(Paths.image('rich/portraits/happy/Chaching', 'shared'));
+		richardchac.updateHitbox();
+		richardchac.scrollFactor.set();
+		add(richardchac);
+		richardchac.visible = false;
 		
 		box.animation.play('normalOpen');
 		box.updateHitbox();
@@ -137,9 +170,6 @@ class DialogueBox extends FlxSpriteGroup
 				SkipThisShit.font = 'Courier New';
 				add(SkipThisShit);
 			}
-
-		box.screenCenter(X);
-		portraitLeft.screenCenter(X);
 
 
 		if (!talkingRight)
@@ -203,6 +233,11 @@ class DialogueBox extends FlxSpriteGroup
 						bgFade.alpha -= 1 / 5 * 0.7;
 						portraitLeft.visible = false;
 						portraitRight.visible = false;
+						richardnormal.visible = false;
+						richardsmile.visible = false;
+						richardsurp.visible = false;
+						richardchac.visible = false;
+						richardsmug.visible = false;
 						swagDialogue.alpha -= 1 / 5;
 						dropText.alpha = swagDialogue.alpha;
 					}, 5);
@@ -246,6 +281,11 @@ class DialogueBox extends FlxSpriteGroup
 						bgFade.alpha -= 1 / 5 * 0.7;
 						portraitLeft.visible = false;
 						portraitRight.visible = false;
+						richardnormal.visible = false;
+						richardsmile.visible = false;
+						richardsurp.visible = false;
+						richardchac.visible = false;
+						richardsmug.visible = false;
 						swagDialogue.alpha -= 1 / 5;
 						dropText.alpha = swagDialogue.alpha;
 					}, 5);
@@ -282,19 +322,92 @@ class DialogueBox extends FlxSpriteGroup
 
 		switch (curCharacter)
 		{
-			case 'dad':
+			case 'richardup':
 				portraitRight.visible = false;
+				richardnormal.visible = false;
+				richardsmile.visible = false;
+				richardsurp.visible = false;
+				richardchac.visible = false;
+				richardsmug.visible = false;
+				box.flipX = true;
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
-					portraitLeft.animation.play('enter');
+				}
+			case 'richardnormal':
+				portraitRight.visible = false;
+				portraitLeft.visible = false;
+				richardsmile.visible = false;
+				richardsurp.visible = false;
+				richardchac.visible = false;
+				richardsmug.visible = false;
+				box.flipX = true;
+				if (!portraitLeft.visible)
+				{
+					richardnormal.visible = true;
+				}
+			case 'richardsmile':
+				portraitRight.visible = false;
+				portraitLeft.visible = false;
+				richardsmile.visible = false;
+				richardsurp.visible = false;
+				richardnormal.visible = false;
+				richardchac.visible = false;
+				richardsmug.visible = false;
+				box.flipX = true;
+				if (!portraitLeft.visible)
+				{
+					richardsmile.visible = true;
+				}
+			case 'richardsmug':
+				portraitRight.visible = false;
+				portraitLeft.visible = false;
+				richardsmile.visible = false;
+				richardsurp.visible = false;
+				richardnormal.visible = false;
+				richardchac.visible = false;
+				richardsmile.visible = false;
+				box.flipX = true;
+				if (!portraitLeft.visible)
+				{
+					richardsmug.visible = true;
+				}
+			case 'richardsurprised':
+				portraitRight.visible = false;
+				portraitLeft.visible = false;
+				richardsmile.visible = false;
+				richardsmug.visible = false;
+				richardnormal.visible = false;
+				richardchac.visible = false;
+				richardsmile.visible = false;
+				box.flipX = true;
+				if (!portraitLeft.visible)
+				{
+					richardsurp.visible = true;
+				}
+			case 'richardchac':
+				portraitRight.visible = false;
+				portraitLeft.visible = false;
+				richardsmile.visible = false;
+				richardsmug.visible = false;
+				richardnormal.visible = false;
+				richardchac.visible = false;
+				richardsmile.visible = false;
+				box.flipX = true;
+				if (!portraitLeft.visible)
+				{
+					richardsurp.visible = false;
+					richardchac.visible = true;
 				}
 			case 'bf':
 				portraitLeft.visible = false;
+				richardnormal.visible = false;
+				richardsurp.visible = false;
+				richardchac.visible = false;
+				richardsmug.visible = false;
 				if (!portraitRight.visible)
 				{
 					portraitRight.visible = true;
-					portraitRight.animation.play('enter');
 				}
 		}
 	}
