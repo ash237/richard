@@ -166,7 +166,7 @@ class StoryMenuState extends MusicBeatState
 
 		trace("Line 96");
 
-		richard = new Richard(200, 350, 1.4, false);
+		richard = new Richard(100, 100, 1, false);
 		grpWeekCharacters.add(new MenuCharacter(0, 100, 0.5, false));
 		grpWeekCharacters.add(new MenuCharacter(450, 25, 0.9, true));
 		grpWeekCharacters.add(new MenuCharacter(850, 100, 0.5, true));
