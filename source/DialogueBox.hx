@@ -30,6 +30,8 @@ class DialogueBox extends FlxSpriteGroup
 
 	var portraitLeft:FlxSprite;
 	var portraitRight:FlxSprite;
+	var bruhbf:FlxSprite;
+	var smugbf:FlxSprite;
 	var richardnormal:FlxSprite;
 	var richardsmile:FlxSprite;
 	var richardsmug:FlxSprite;
@@ -92,14 +94,14 @@ class DialogueBox extends FlxSpriteGroup
 				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
 			case 'short sale':
 				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-senpaiMad');
-				box.animation.addByPrefix('normalOpen', 'SENPAI ANGRY IMPACT SPEECH', 24, false);
-				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH', [4], "", 24);
+				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
+				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
+				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
 			case 'bankrupt':
 				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-senpaiMad');
-				box.animation.addByPrefix('normalOpen', 'SENPAI ANGRY IMPACT SPEECH', 24, false);
-				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH', [4], "", 24);
+				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
+				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
+				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
 			case 'thorns':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-evil');
@@ -129,6 +131,22 @@ class DialogueBox extends FlxSpriteGroup
 		portraitRight.scrollFactor.set();
 		add(portraitRight);
 		portraitRight.visible = false;
+
+		bruhbf = new FlxSprite(780, 120).loadGraphic(Paths.image('rich/portraits/Bf/Surprised', 'shared'));
+		bruhbf.setGraphicSize(Std.int(bruhbf.width * 0.84));
+		bruhbf.updateHitbox();
+		bruhbf.antialiasing = true;
+		bruhbf.scrollFactor.set();
+		add(bruhbf);
+		bruhbf.visible = false;
+
+		smugbf = new FlxSprite(780, 120).loadGraphic(Paths.image('rich/portraits/Bf/Smug', 'shared'));
+		smugbf.setGraphicSize(Std.int(smugbf.width * 0.84));
+		smugbf.updateHitbox();
+		smugbf.antialiasing = true;
+		smugbf.scrollFactor.set();
+		add(smugbf);
+		smugbf.visible = false;
 		
 		richardnormal = new FlxSprite(20, 40).loadGraphic(Paths.image('rich/portraits/happy/Normal', 'shared'));
 		richardnormal.updateHitbox();
@@ -167,7 +185,7 @@ class DialogueBox extends FlxSpriteGroup
 		if (hasDialog)
 			{
 				SkipThisShit = new FlxText(0, FlxG.height * 0.92, -100, "Press SPACE to skip", 32);
-				SkipThisShit.font = 'Courier New';
+				SkipThisShit.font = 'Pixel Arial 11 Bold';
 				add(SkipThisShit);
 			}
 
@@ -178,12 +196,12 @@ class DialogueBox extends FlxSpriteGroup
 		}
 
 		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
-		dropText.font = 'Courier New';
+		dropText.font = 'Pixel Arial 11 Bold';
 		dropText.color = 0xFFD89494;
 		add(dropText);
 
 		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
-		swagDialogue.font = 'Courier New';
+		swagDialogue.font = 'Pixel Arial 11 Bold';
 		swagDialogue.color = 0xFF3F2021;
 		add(swagDialogue);
 		
@@ -233,6 +251,8 @@ class DialogueBox extends FlxSpriteGroup
 						bgFade.alpha -= 1 / 5 * 0.7;
 						portraitLeft.visible = false;
 						portraitRight.visible = false;
+						smugbf.visible = false;
+						bruhbf.visible = false;
 						richardnormal.visible = false;
 						richardsmile.visible = false;
 						richardsurp.visible = false;
@@ -281,6 +301,8 @@ class DialogueBox extends FlxSpriteGroup
 						bgFade.alpha -= 1 / 5 * 0.7;
 						portraitLeft.visible = false;
 						portraitRight.visible = false;
+						smugbf.visible = false;
+						bruhbf.visible = false;
 						richardnormal.visible = false;
 						richardsmile.visible = false;
 						richardsurp.visible = false;
@@ -325,6 +347,8 @@ class DialogueBox extends FlxSpriteGroup
 			case 'richardup':
 				portraitRight.visible = false;
 				richardnormal.visible = false;
+				smugbf.visible = false;
+				bruhbf.visible = false;
 				richardsmile.visible = false;
 				richardsurp.visible = false;
 				richardchac.visible = false;
@@ -336,6 +360,8 @@ class DialogueBox extends FlxSpriteGroup
 				}
 			case 'richardnormal':
 				portraitRight.visible = false;
+				smugbf.visible = false;
+				bruhbf.visible = false;
 				portraitLeft.visible = false;
 				richardsmile.visible = false;
 				richardsurp.visible = false;
@@ -348,6 +374,8 @@ class DialogueBox extends FlxSpriteGroup
 				}
 			case 'richardsmile':
 				portraitRight.visible = false;
+				smugbf.visible = false;
+				bruhbf.visible = false;
 				portraitLeft.visible = false;
 				richardsmile.visible = false;
 				richardsurp.visible = false;
@@ -361,6 +389,8 @@ class DialogueBox extends FlxSpriteGroup
 				}
 			case 'richardsmug':
 				portraitRight.visible = false;
+				smugbf.visible = false;
+				bruhbf.visible = false;
 				portraitLeft.visible = false;
 				richardsmile.visible = false;
 				richardsurp.visible = false;
@@ -374,6 +404,8 @@ class DialogueBox extends FlxSpriteGroup
 				}
 			case 'richardsurprised':
 				portraitRight.visible = false;
+				smugbf.visible = false;
+				bruhbf.visible = false;
 				portraitLeft.visible = false;
 				richardsmile.visible = false;
 				richardsmug.visible = false;
@@ -388,6 +420,8 @@ class DialogueBox extends FlxSpriteGroup
 			case 'richardchac':
 				portraitRight.visible = false;
 				portraitLeft.visible = false;
+				smugbf.visible = false;
+				bruhbf.visible = false;
 				richardsmile.visible = false;
 				richardsmug.visible = false;
 				richardnormal.visible = false;
@@ -401,6 +435,8 @@ class DialogueBox extends FlxSpriteGroup
 				}
 			case 'bf':
 				portraitLeft.visible = false;
+				smugbf.visible = false;
+				bruhbf.visible = false;
 				richardnormal.visible = false;
 				richardsurp.visible = false;
 				richardchac.visible = false;
@@ -408,6 +444,30 @@ class DialogueBox extends FlxSpriteGroup
 				if (!portraitRight.visible)
 				{
 					portraitRight.visible = true;
+				}
+			case 'bfbruh':
+				portraitLeft.visible = false;
+				smugbf.visible = false;
+				portraitRight.visible = false;
+				richardnormal.visible = false;
+				richardsurp.visible = false;
+				richardchac.visible = false;
+				richardsmug.visible = false;
+				if (!portraitRight.visible)
+				{
+					bruhbf.visible = true;
+				}
+			case 'bfsmug':
+				portraitLeft.visible = false;
+				bruhbf.visible = false;
+				portraitRight.visible = false;
+				richardnormal.visible = false;
+				richardsurp.visible = false;
+				richardchac.visible = false;
+				richardsmug.visible = false;
+				if (!portraitRight.visible)
+				{
+					smugbf.visible = true;
 				}
 		}
 	}

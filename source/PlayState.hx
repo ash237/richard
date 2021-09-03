@@ -494,7 +494,7 @@ class PlayState extends MusicBeatState
 			case 'get-rich':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/get-rich/dialogue'));
 			case 'short-sale':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('data/thorns/thornsDialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/short-sale/dialogue'));
 			case 'bankrupt':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/thorns/thornsDialogue'));
 		}
