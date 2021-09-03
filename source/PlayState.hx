@@ -937,7 +937,7 @@ class PlayState extends MusicBeatState
 						bg.active = false;
 						add(bg);
 
-						var theGraph:FlxSprite = new FlxSprite(646, 80).loadGraphic(Paths.image('rich/TV', 'shared'));
+						var theGraph:FlxSprite = new FlxSprite(646, -20).loadGraphic(Paths.image('rich/TV', 'shared'));
 						if(FlxG.save.data.antialiasing)
 							{
 								theGraph.antialiasing = true;
@@ -946,7 +946,7 @@ class PlayState extends MusicBeatState
 						theGraph.active = false;
 						add(theGraph);
 
-						graphPointer = new FlxObject(1140, 188, 0, 0);
+						graphPointer = new FlxObject(1140, 88, 0, 0);
 						add(graphPointer);
 						graphPosition = graphPointer.y;
 						grpGraph = new FlxTypedGroup<FlxSprite>();
@@ -956,7 +956,7 @@ class PlayState extends MusicBeatState
 						add(grpGraphIndicators);
 
 						for (i in 0...3) {
-							var indic:FlxSprite = new FlxSprite(681, 334);
+							var indic:FlxSprite = new FlxSprite(681, 234);
 							indic.visible = false;
 							switch (i) {
 								case 0:
@@ -979,11 +979,11 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = 0.6;
 						curStage = 'airplane';
 
-						var sky:FlxSprite = new FlxSprite(-600, -600).loadGraphic(Paths.image('rich/Sky phase 1/Sky Storm', 'shared'));
+						var sky:FlxSprite = new FlxSprite(-600, -600).loadGraphic(Paths.image('rich/Sky phase 2/Sky Storm', 'shared'));
 						if(FlxG.save.data.antialiasing)
-							{
-								sky.antialiasing = true;
-							}
+						{
+							sky.antialiasing = true;
+						}
 						sky.scrollFactor.set(0.6, 0.6);
 						add(sky);
 						var bg:FlxSprite = new FlxSprite(-600, -600).loadGraphic(Paths.image('rich/Background', 'shared'));
@@ -995,7 +995,7 @@ class PlayState extends MusicBeatState
 						bg.active = false;
 						add(bg);
 
-						var theGraph:FlxSprite = new FlxSprite(646, 80).loadGraphic(Paths.image('rich/TV', 'shared'));
+						var theGraph:FlxSprite = new FlxSprite(646, -20).loadGraphic(Paths.image('rich/TV', 'shared'));
 						if(FlxG.save.data.antialiasing)
 							{
 								theGraph.antialiasing = true;
@@ -1004,7 +1004,7 @@ class PlayState extends MusicBeatState
 						theGraph.active = false;
 						add(theGraph);
 
-						graphPointer = new FlxObject(1140, 188, 0, 0);
+						graphPointer = new FlxObject(1140, 88, 0, 0);
 						add(graphPointer);
 						graphPosition = graphPointer.y;
 						grpGraph = new FlxTypedGroup<FlxSprite>();
@@ -1014,7 +1014,7 @@ class PlayState extends MusicBeatState
 						add(grpGraphIndicators);
 
 						for (i in 0...3) {
-							var indic:FlxSprite = new FlxSprite(681, 334);
+							var indic:FlxSprite = new FlxSprite(681, 234);
 							indic.visible = false;
 							switch (i) {
 								case 0:
@@ -3126,8 +3126,8 @@ class PlayState extends MusicBeatState
 				healthBarBG.x = FlxMath.lerp(healthBarBG.x, healthBarBGxpos, 0.1);
 			updateGraph();
 			if (shinyMode && graphMoveTimer == 1) {
-				graphMove = FlxG.random.float(4, 4.1, [0]);
-				
+				graphPointer.y += FlxG.random.float(4, 4.1, [0]);
+				neutralGraphPos = graphPointer.y;
 			}
 			var holdArray:Array<Bool> = [controls.LEFT, controls.DOWN, controls.UP, controls.RIGHT];
 
@@ -3674,7 +3674,7 @@ class PlayState extends MusicBeatState
 		var coolText:FlxText = new FlxText(0, 0, 0, placement, 32);
 		coolText.screenCenter();
 		coolText.x = FlxG.width * 0.45;
-		coolText.y -= 350;
+		coolText.y -= 150;
 		coolText.cameras = [camHUD];
 		//
 
@@ -3747,7 +3747,7 @@ class PlayState extends MusicBeatState
 
 			rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2));
 			rating.screenCenter();
-			rating.y -= 50;
+			rating.y += 80;
 			rating.x = coolText.x - 125;
 
 			if (FlxG.save.data.changedHit)
@@ -4511,14 +4511,14 @@ class PlayState extends MusicBeatState
 				}
 		}
 		
-		if (graphPointer.y < 99)
-			graphPointer.y = 99;
-		if (graphPointer.y > 325)
-			graphPointer.y = 325;
+		if (graphPointer.y < -1)
+			graphPointer.y = -1;
+		if (graphPointer.y > 225)
+			graphPointer.y = 225;
 
 		/*if (graphPosition < graphPointer.y)
 			
-		else if (graphPosition > graphPointer.y)*/
+		else if (graphPosition > graphPointer.y)*/	
 			
 		var thePoint = new FlxSprite(graphPointer.x, graphPointer.y).makeGraphic(4, 4, theColor);
 		graphPosition = thePoint.y;
@@ -4609,10 +4609,11 @@ class PlayState extends MusicBeatState
 					oldMode = graphMode;
 					investments++;
 					shinyMode = true;
+					graphBurstTimer = 70;
 					graphMove = FlxG.random.float(-4, -3.2, [0]);
 					graphMoveTimer = 10;
 					graphMode = 1;
-					graphBurstTimer = 70;
+					
 					gf.playAnim('point', true);
 					if (dad.animation.curAnim.name != 'chaChing')
 						dad.playAnim('troll', true);
