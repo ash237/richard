@@ -53,6 +53,8 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		FlxG.autoPause = false;
+
 		#if polymod
 		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
@@ -110,7 +112,7 @@ class TitleState extends MusicBeatState
 		startIntro();
 		#end
 		#end
-		FlxG.autoPause = false;
+		
 	}
 
 	var logoBl:FlxSprite;
@@ -141,10 +143,12 @@ class TitleState extends MusicBeatState
 			}
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
 		logoBl.updateHitbox();
+		logoBl.scale.set(0.8, 0.8);
+		logoBl.updateHitbox();
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
-		gfDance = new FlxSprite(730, 230);
+		gfDance = new FlxSprite(0, 137);
 		gfDance.frames = Paths.getSparrowAtlas('richardTitle');
 		gfDance.animation.addByIndices('danceLeft', 'hi evity', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 		gfDance.animation.addByIndices('danceRight', 'hi evity', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
