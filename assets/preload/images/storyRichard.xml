@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="storyRichard.png">
+	<!-- Created with Adobe Animate version 21.0.8.42666 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="richrd0000" x="3" y="3" width="257" height="253"/>
+	<SubTexture name="richrd0001" x="263" y="3" width="257" height="253"/>
+	<SubTexture name="richrd0002" x="523" y="3" width="257" height="253"/>
+	<SubTexture name="richrd0003" x="3" y="259" width="257" height="253"/>
+	<SubTexture name="richrd0004" x="263" y="259" width="257" height="253"/>
+	<SubTexture name="richrd0005" x="523" y="259" width="257" height="253"/>
+	<SubTexture name="richrd0006" x="3" y="515" width="257" height="253"/>
+	<SubTexture name="richrd0007" x="3" y="515" width="257" height="253"/>
+	<SubTexture name="richrd0008" x="3" y="515" width="257" height="253"/>
+	<SubTexture name="richrd0009" x="3" y="515" width="257" height="253"/>
+	<SubTexture name="richrd0010" x="3" y="515" width="257" height="253"/>
+	<SubTexture name="richrd0011" x="3" y="515" width="257" height="253"/>
+</TextureAtlas>

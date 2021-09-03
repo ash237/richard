@@ -44,6 +44,7 @@ class StoryMenuState extends MusicBeatState
 		['senpai', 'bf', 'gf']
 	];
 
+	var richard:Richard;
 	var weekNames:Array<String> = CoolUtil.coolTextFile(Paths.txt('data/weekNames'));
 
 	var txtWeekTitle:FlxText;
@@ -165,6 +166,7 @@ class StoryMenuState extends MusicBeatState
 
 		trace("Line 96");
 
+		richard = new Richard(100, 100, 1, false);
 		grpWeekCharacters.add(new MenuCharacter(0, 100, 0.5, false));
 		grpWeekCharacters.add(new MenuCharacter(450, 25, 0.9, true));
 		grpWeekCharacters.add(new MenuCharacter(850, 100, 0.5, true));
@@ -202,6 +204,7 @@ class StoryMenuState extends MusicBeatState
 
 		add(yellowBG);
 		add(grpWeekCharacters);
+		add(richard);
 
 		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
 		txtTracklist.alignment = CENTER;
@@ -345,6 +348,7 @@ class StoryMenuState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 
 				grpWeekText.members[curWeek].startFlashing();
+
 				grpWeekCharacters.members[1].animation.play('bfConfirm');
 				stopspamming = true;
 			}
@@ -447,6 +451,7 @@ class StoryMenuState extends MusicBeatState
 
 	function updateText()
 	{
+		richard.setCharacter('richard');
 		grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
 		grpWeekCharacters.members[1].setCharacter(weekCharacters[curWeek][1]);
 		grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
@@ -485,6 +490,7 @@ class StoryMenuState extends MusicBeatState
 	{
 		super.beatHit();
 
+		richard.bopHead();
 		grpWeekCharacters.members[0].bopHead();
 		grpWeekCharacters.members[1].bopHead();
 		grpWeekCharacters.members[2].bopHead();
